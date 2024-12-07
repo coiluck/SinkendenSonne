@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>陽の沈む場所</title>
   <link rel="stylesheet" href="./css/title.css">
+  <link rel="stylesheet" href="./css/opening.css">
   <link rel="icon" href="./Picture/favicon.ico">
 </head>
 <body>
@@ -32,27 +33,56 @@
           <img src="./Picture/news_event_JAP_expansion.png">
         </div>
         <h2>大日本帝国</h2>
-        <p>ハワイに落とした一発の原子爆弾は、アジアの新たな盟主を決めた。太平洋の覇権を獲得した日本は世界最大の海軍を持ち、強大な経済圏をアジアに築いている。しかし肥大化した財閥による独占体制は経済を停滞へと導き、共栄圏の諸国は日本の搾取に反乱の火種を起こしつつある。そして最大の敵アメリカはまだ諦めていない。フィリピン内戦が終わらないのは彼らの介入のせいだ。軍事技術の優位性を示すために月面基地を作る計画を実行に移す時が来た。大丈夫、まだ太陽は我々を照らしている。</p>
+        <p>ハワイに落ちた一発の原子爆弾は、アジアの新たな盟主を決めた。太平洋の覇権を獲得した日本は世界最大の海軍を持ち、強大な経済圏をアジアに築いている。しかし肥大化した財閥による独占体制は経済を停滞へと導き、共栄圏の諸国は日本の搾取に反乱の火種を起こしつつある。そして最大の敵アメリカはまだ諦めていない。フィリピン内戦が終わらないのは彼らの介入のせいだ。軍事技術の優位性を示すために月面基地を作る計画を実行に移す時が来た。大丈夫、まだ太陽は我々を照らしている。</p>
       </div>
       <button id="select-country-confirm"></button>
     </div>
 
   </div>
 
-  <div id="modal-opening">
-    <!--オープニングストーリー-->
-    <div class="opening-background">
-      <img src="./Picture/aaaa.png">
+  <div id="GER-modal-opening">
+    <!--オープニングストーリー（ドイツ）-->
+    <div class="GER-opening-background">
+      <img src="./Picture/GER_germania.png">
+    </div>
+    <div class="text-container">
+      <p id="GER-opening-text">我々は勝利した。</p>
+    </div>
+    <div class="skip-window">
+      <p>以前に読んだストーリーです。スキップしますか？</p>
+      <div class="button-container">
+        <div class="skip-cancel">Cancel</div>
+        <div class="skip-button">Skip</div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div id="GER-modal-opening-room">
+    <!--オープニングストーリー2（ドイツ）-->
+    <div class="GER-opening-room-background">
+      <img src="./Picture/GER_room.png">
+    </div>
+    <div class="text-container">
+      <p id="GER-opening-room-text"></p>
+    </div>
+  </div>
+
+  <div id="GER-modal-opening-rocket">
+    <!--オープニングストーリー3（ドイツ）-->
+    <div class="GER-opening-rocket-background">
+      <img src="./Picture/rocket.jpg">
+    </div>
+    <div class="text-container">
+      <p id="GER-opening-rocket-text"></p>
     </div>
   </div>
 
   <div id="modal-game">
     <!--ゲーム画面-->
-    <div class="game-background">
-      <img src="./Picture/bbbb.png">
-    </div>
   </div>
 
   <script src="./Script/title.js"></script>
+  <script src="./Script/GER-opening.js"></script>
 </body>
 </html>
