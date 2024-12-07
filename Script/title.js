@@ -50,7 +50,7 @@ document.getElementById('start-button').addEventListener('click', event => {
         selectGER.classList.add('fadein');
         selectJPN.style.display = "block";
         selectJPN.classList.add('fadein');
-        // 上の部分見づら過ぎておもろい
+        // 上の部分見づら過ぎておもろいw
         console.log("display country-section");
     }, 800);
 });
@@ -77,16 +77,23 @@ document.getElementById('select-JPN').addEventListener('click', function() {
     confirmButton.classList.add('active');
   }, 500);
 });
-let selectedCountry; // 関数の外でも取り出せるように宣言
+
+// ここでわけてからイベントリスナーでモーダルひとつひとつ結び付ければいい
 document.getElementById('select-country-confirm').addEventListener('click', function() {
   // 国家決定ボタンが押されたら...
   const forWho = document.getElementById('select-country-confirm').textContent
   if (forWho === "総統のために！"){
     console.log("選択: ドイツ")
-    selectedCountry = "GER";
+    setTimeout(function(){
+      document.getElementById("GER-modal-opening").style.display = "flex";
+      document.getElementById("GER-modal-opening").classList.add('fadein');
+    }, 1000); // タイトルが消えるのと同時にフェードイン開始
   } else if (forWho === "天皇万歳！"){
     console.log("選択: 日本")
-    selectedCountry = "JPN";
+    setTimeout(function(){
+      document.getElementById("JPN-modal-opening").style.display = "flex";
+      document.getElementById("JPN-modal-opening").classList.add('fadein');
+    }, 1000); // タイトルが消えるのと同時にフェードイン開始
   } else {
     console.log("選択した国が見つかりません")
     alert("国家選択で意図しないバグが発生しました。製作者に報告してくれると助かります")
