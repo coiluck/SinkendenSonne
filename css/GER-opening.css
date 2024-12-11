@@ -34,7 +34,6 @@
 .text-container p {
   margin: 10px 20px;
   color: #eee;
-  -webkit-user-select: none;
   user-select: none;
   opacity: 1;
 }
@@ -50,7 +49,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 800;
+  z-index: 700;
   overflow: hidden;
 }
 .GER-opening-room-background {
@@ -61,7 +60,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(50%) contrast(125%);
+  filter: grayscale(100%) contrast(175%);
+}
+#opening-room-character {
+  position: fixed;
+  bottom: 0;
+  left: 30%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 50%;
+  display: none;
+}
+#opening-room-character img {
+  width: auto;
+  height: 100%;
 }
 /* op3 */
 #GER-modal-opening-rocket {
@@ -74,7 +86,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 800;
+  z-index: 600;
   overflow: hidden;
 }
 .GER-opening-rocket-background {

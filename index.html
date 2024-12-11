@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>陽の沈む場所</title>
   <link rel="stylesheet" href="./css/title.css">
-  <link rel="stylesheet" href="./css/opening.css">
+  <link rel="stylesheet" href="./css/GER-opening.css">
+  <link rel="stylesheet" href="./css/GER-chara-select.css">
   <link rel="icon" href="./Picture/favicon.ico">
 </head>
 <body>
@@ -48,14 +49,13 @@
     <div class="text-container">
       <p id="GER-opening-text">我々は勝利した。</p>
     </div>
-    <div class="skip-window">
+    <div id="skip-window">
       <p>以前に読んだストーリーです。スキップしますか？</p>
       <div class="button-container">
-        <div class="skip-cancel">Cancel</div>
-        <div class="skip-button">Skip</div>
+        <div id="skip-cancel">Cancel</div>
+        <div id="skip-button">Skip</div>
       </div>
     </div>
-    
   </div>
 
   <div id="GER-modal-opening-room">
@@ -63,8 +63,64 @@
     <div class="GER-opening-room-background">
       <img src="./Picture/GER_room.png">
     </div>
+    <div id="opening-room-character">
+      <img src="./Picture/azana2.png">
+    </div>
     <div class="text-container">
       <p id="GER-opening-room-text"></p>
+    </div>
+  </div>
+
+  <div id="GER-modal-character-select">
+    <!--キャラ選択（ドイツ）-->
+    <div class="title">
+      <h1>キャラクター選択画面</h1>
+    </div>
+    <div class="content">
+      <div class="character-list">
+        <h2>選択可能なキャラクター</h2>
+        <div class="character" id="char1">
+          <img src="./Picture/Ernst-vom-Rath.jpg" alt="キャラクター1の顔" class="character-face">
+          <div class="character-info">
+            <p><strong>名前:</strong> ラグナー・フォン・ラート</p>
+            <p><strong>職業:</strong> 哀れみ深い紳士</p>
+            <p><strong>効果:</strong> 他国との関係値の上昇効果 +25%</p>
+          </div>
+        </div>
+        <div class="character" id="char2">
+          <img src="./Picture/Otto_Hahn.jpg" alt="キャラクター2の顔" class="character-face">
+          <div class="character-info">
+            <p><strong>名前:</strong> オットー・ハーン</p>
+            <p><strong>職業:</strong> 帝国の科学者</p>
+            <p><strong>効果:</strong> 研究速度 +15%</p>
+          </div>
+        </div>
+        <div class="character" id="char3">
+          <img src="./Picture/face3.jpg" alt="キャラクター3の顔" class="character-face">
+          <div class="character-info">
+            <p><strong>名前:</strong> フンベルト・シェーンベルク</p>
+            <p><strong>職業:</strong> 戦略的な補給改革者</p>
+            <p><strong>効果:</strong> 毎ターンの補給物資 +10%</p>
+          </div>
+        </div>
+        <div class="character" id="char4">
+          <img src="./Picture/face4.jpg" alt="キャラクター4の顔" class="character-face">
+          <div class="character-info">
+            <p><strong>名前:</strong> レーオン・エーベルハルト</p>
+            <p><strong>職業:</strong> 冷徹な兵站効率師</p>
+            <p><strong>効果:</strong> 人員ひとりあたりの消費物資量 -15%</p>
+          </div>
+        </div>
+      </div>
+      <div class="chosen-characters">
+        <h2>選択済み（上限: 2人）</h2>
+        <ul id="chosen-list">
+          <li>まだ選択されていません。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="confirm-button">確定</button>
     </div>
   </div>
 
@@ -78,11 +134,12 @@
     </div>
   </div>
 
-  <div id="modal-game">
+  <div id="GER-modal-game">
     <!--ゲーム画面-->
   </div>
 
   <script src="./Script/title.js"></script>
-  <script src="./Script/GER-opening.js"></script>
+  <script src="./Script/GER-opening.js" defer></script>
+  <script src="./Script/GER-chara-select.js" defer></script>
 </body>
 </html>
