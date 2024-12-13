@@ -93,4 +93,8 @@ document.getElementById('confirm-button').addEventListener('click', function() {
   setTimeout(function(){ 
   document.getElementById('GER-modal-character-select').style.display = "none"; 
   }, 1000);
+  setTimeout(function(){ 
+    document.getElementById('GER-modal-game').style.display = "block";
+    document.getElementById('GER-modal-game').classList.add('fadein');
+  }, 1000);
 });

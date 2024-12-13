@@ -3,7 +3,7 @@
 /* 
 ・シナリオを書く
 ・話し相手の立ち絵用意
-・キャラ選択処理をOP-Skip時でもうまくいくように書く
+・キャラ選択処理をOP-Skip時でもうまくいくように書く: 2024-12-11 Cleared
 */
 const openingTextArray = [
   "ここは帝都 ゲルマニア",
@@ -50,7 +50,7 @@ function byeOpening() {
   }, 1000);
   setTimeout(function() {
     const modalOpeningRoom = document.getElementById("GER-modal-opening-room");
-    modalOpeningRoom.style.display = "flex";
+    modalOpeningRoom.style.display = "block";
     modalOpeningRoom.classList.add('fadein');
   }, 1000); // このモーダルが消えるのと同時にフェードイン開始
 }
@@ -96,6 +96,9 @@ const handleClick2 = function(){
     // インデックスを次に進める
     if (currentOpening2Index + 1 <= opening2TextArray.length) {
         currentOpening2Index += 1; // 次のインデックスに進む
+        if (window.getComputedStyle(document.getElementById('GER-modal-game')).display === "block") {
+          document.getElementById('GER-modal-game').style.display = "none";
+        } // 計算済みのスタイルを取得 これでスキップしなかったときもgame-modalがなくなるからOP2->OP3への移行時に映らない
       } else {
         byeOpening2(); // 最後ならこのモーダルとのお別れ処理
       }
@@ -115,7 +118,7 @@ function byeOpening2() {
     document.getElementById('GER-modal-opening-room').style.display = "none"; 
   }, 1000);
   setTimeout(function(){
-    document.getElementById("GER-modal-opening-rocket").style.display = "flex";
+    document.getElementById("GER-modal-opening-rocket").style.display = "block";
     document.getElementById("GER-modal-opening-rocket").classList.add('fadein');
   }, 1000); // このモーダルが消えるのと同時にフェードイン開始
 }
@@ -153,7 +156,7 @@ function byeOpening3() {
     document.getElementById('GER-modal-opening-rocket').style.display = "none"; 
   }, 1000);
   setTimeout(function(){
-    document.getElementById("GER-modal-game").style.display = "flex";
+    document.getElementById("GER-modal-game").style.display = "block";
     document.getElementById("GER-modal-game").classList.add('fadein');
   }, 1000); // このモーダルが消えるのと同時にフェードイン開始
   // ローカルストレージから値を取得

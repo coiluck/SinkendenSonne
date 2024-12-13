@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./css/title.css">
   <link rel="stylesheet" href="./css/GER-opening.css">
   <link rel="stylesheet" href="./css/GER-chara-select.css">
+  <link rel="stylesheet" href="./css/GER-game.css">
   <link rel="icon" href="./Picture/favicon.ico">
 </head>
 <body>
@@ -38,7 +39,6 @@
       </div>
       <button id="select-country-confirm"></button>
     </div>
-
   </div>
 
   <div id="GER-modal-opening">
@@ -136,10 +136,62 @@
 
   <div id="GER-modal-game">
     <!--ゲーム画面-->
+    <div class="GER-game-background">
+      <img src="./Picture/background.png">
+    </div>
+    <div class="GER-status-bar">
+      <!--管理する数値-->
+      <div class="GER-status-item">
+        <span class="GER-label">物資:</span>
+        <span id="GER-resources">1000</span>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">他国との関係値:</span>
+        <span id="GER-relations">50</span>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">研究進度:</span>
+        <span id="GER-progress">0</span>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">基地の人員:</span>
+        <div class="GER-personnel-control">
+          <button class="GER-personnel-btn" id="GER-personnel-decrease">-</button>
+          <span id="GER-personnel-count">50</span>
+          <button class="GER-personnel-btn" id="GER-personnel-increase">+</button>
+        </div>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">月面開発:</span>
+        <span id="GER-moon-development">0</span>
+      </div>
+    </div>
+    <div class="GER-game-screen">
+      <div class="GER-scenario-section">
+        <h2 class="GER-scenario-title">月面基地拡張計画</h2>
+        <p class="GER-scenario-description">厳しい月面環境での生存と技術開発が求められる</p>
+      </div>
+      <div class="GER-choices-section">
+        <!--選択肢-->
+        <div id="GER-selestion1" class="GER-choice-card">
+          <h3>資源探査</h3>
+          <p>月面の未知の地域を探査し、貴重な資源を発見する</p>
+        </div>
+        <div id="GER-selestion2" class="GER-choice-card">
+          <h3>研究開発</h3>
+          <p>月面生存に必要な革新的な技術の開発に注力する</p>
+        </div>
+        <div id="GER-selestion3" class="GER-choice-card">
+          <h3>基地拡張</h3>
+          <p>現在の基地インフラを強化し、居住環境を改善する</p> 
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="./Script/title.js"></script>
   <script src="./Script/GER-opening.js" defer></script>
   <script src="./Script/GER-chara-select.js" defer></script>
+  <script src="./Script/GER-game.js" defer></script>
 </body>
 </html>

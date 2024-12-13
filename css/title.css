@@ -30,8 +30,14 @@ body,a,p,h1,h2,button {
   -webkit-user-select: none;
   user-select: none;
 }
+html {
+  width: 100%;
+  min-height: 100%;
+}
 body {
   background-color: black;
+  width: 100%;
+  min-height: 100%;
 }
 .fadein-title {
   animation: fadeInTitle 5s;

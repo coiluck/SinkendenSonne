@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     titleGER.classList.add('fadein-title');
   }, 200);
   console.log("display title-text");
+  if (window.innerWidth >= 1981) {
+    alert("画面幅が大きすぎます。FHD以上の幅はレイアウトが崩れる可能性があります。Windowの幅を変更することをお勧めします");
+  }
 });
 
 window.addEventListener('load', () => {
@@ -27,32 +30,32 @@ window.addEventListener('load', () => {
 });
 
 document.getElementById('start-button').addEventListener('click', event => {
-    // startボタンが押されたら...
-    const titleJPN = document.getElementById('title-JPN');
-    const titleGER = document.getElementById('title-GER');
-    const startButton = document.getElementById('start-button');
-    // 文字全部フェードアウト
-    titleJPN.classList.add('fadeout-title');
-    titleGER.classList.add('fadeout-title');
-    startButton.classList.add('fadeout-title');
-    console.log("clear title-text");
-    // 文字消えてから国家選択表示
-    setTimeout(function(){
-        const countrySection = document.getElementById('country-sections');
-        const selectText = document.getElementById('select-text');
-        const selectGER = document.getElementById('select-GER');
-        const selectJPN = document.getElementById('select-JPN');
-        countrySection.style.display = "flex";
-        countrySection.classList.add('fadein');
-        selectText.style.display = "block";
-        selectText.classList.add('fadein');
-        selectGER.style.display = "block";
-        selectGER.classList.add('fadein');
-        selectJPN.style.display = "block";
-        selectJPN.classList.add('fadein');
-        // 上の部分見づら過ぎておもろいw
-        console.log("display country-section");
-    }, 800);
+  // startボタンが押されたら...
+  const titleJPN = document.getElementById('title-JPN');
+  const titleGER = document.getElementById('title-GER');
+  const startButton = document.getElementById('start-button');
+  // 文字全部フェードアウト
+  titleJPN.classList.add('fadeout-title');
+  titleGER.classList.add('fadeout-title');
+  startButton.classList.add('fadeout-title');
+  console.log("clear title-text");
+  // 文字消えてから国家選択表示
+  setTimeout(function(){
+    const countrySection = document.getElementById('country-sections');
+    const selectText = document.getElementById('select-text');
+    const selectGER = document.getElementById('select-GER');
+    const selectJPN = document.getElementById('select-JPN');
+    countrySection.style.display = "flex";
+    countrySection.classList.add('fadein');
+    selectText.style.display = "block";
+    selectText.classList.add('fadein');
+    selectGER.style.display = "block";
+    selectGER.classList.add('fadein');
+    selectJPN.style.display = "block";
+    selectJPN.classList.add('fadein');
+    // 上の部分見づら過ぎておもろいw
+    console.log("display country-section");
+  }, 800);
 });
 
 document.getElementById('select-GER').addEventListener('click', function() {
@@ -116,17 +119,25 @@ document.getElementById('select-country-confirm').addEventListener('click', func
 });
 
 // Skipボタンの処理
-const skipCansel = function(){
+const skipCansel = function(event){
+  // イベントの伝播を防ぐ
+  event.stopPropagation();
   // スキップをキャンセル
   console.log("選択しました: スキップしない");
+  document.getElementById("skip-button").removeEventListener('click', skipButton); // イベントリスナーを解除
   document.getElementById("skip-cancel").removeEventListener('click', skipCansel); // イベントリスナーを解除
-  document.getElementById("skip-cancel").classList.add('fadeout'); // フェードアウト開始
+  document.getElementById("skip-window").classList.add('fadeout'); // フェードアウト開始
   setTimeout(function() { 
-    document.getElementById("skip-cancel").style.display = "none"; 
+    document.getElementById("skip-window").style.display = "none"; 
   }, 1000);
 }
-const skipButton = function(){
+const skipButton = function(event){
+  // イベントの伝播を防ぐ
+  event.stopPropagation();
   // スキップする場合
+  console.log("選択しました: スキップする");
+  document.getElementById("skip-button").removeEventListener('click', skipButton); // イベントリスナーを解除
+  document.getElementById("skip-cancel").removeEventListener('click', skipCansel); // イベントリスナーを解除
   // 見えてるのはフェードアウト、それ以外は見えなくする
   document.getElementById("GER-modal-opening").classList.add('fadeout'); // フェードアウト開始
   document.getElementById("GER-modal-opening-room").style.display = "none";
