@@ -64,35 +64,41 @@ characters.forEach(character => {
     });
   });
 });
-let gameDataByChar = [
-  kannkei = 1,
-  kennkyuu = 1,
-  hokyuu = 1,
-  shouhi = 1
-];
+window.gameDataByChar = {
+  kannkei: 1,
+  kennkyuu: 1,
+  hokyuu: 1,
+  shouhi: 1
+};
 // 確定ボタンが押された時の処理
 document.getElementById('confirm-button').addEventListener('click', function() {
   // 選択されたキャラクターをループで処理
   selectedCharacters.forEach(character => {
     if (character.id === 'char1') {
-      gameDataByChar.kannkei = 1.25;
+      window.gameDataByChar.kannkei = 1.25;
       console.log(character.name + "の選択処理が完了しました");
     } else if (character.id === 'char2') {
-      gameDataByChar.kennkyuu = 1.15;
+      window.gameDataByChar.kennkyuu = 1.15;
       console.log(character.name + "の選択処理が完了しました");
     } else if (character.id === 'char3') {
-      gameDataByChar.hokyuu = 1.1;
+      window.gameDataByChar.hokyuu = 1.1;
       console.log(character.name + "の選択処理が完了しました");
     } else if (character.id === 'char4') {
-      gameDataByChar.shouhi = 0.9;
+      window.gameDataByChar.shouhi = 0.85;
       console.log(character.name + "の選択処理が完了しました");
     }
   });
+  console.log(window.gameDataByChar);
   // 選択モーダルを閉じる処理
   document.getElementById('GER-modal-character-select').classList.add('fadeout');
   setTimeout(function(){ 
   document.getElementById('GER-modal-character-select').style.display = "none"; 
   }, 1000);
+  const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
+  if (hasSeenTutorial === "true") {
+    console.log("チュートリアルを削除");
+    document.getElementById("game-tutorial").style.display = "none";
+  }
   setTimeout(function(){ 
     document.getElementById('GER-modal-game').style.display = "block";
     document.getElementById('GER-modal-game').classList.add('fadein');

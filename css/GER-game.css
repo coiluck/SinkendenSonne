@@ -139,3 +139,69 @@
     width: 25px;
   }
 }
+#game-tutorial {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.black-layer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .4;
+  background-color: #000;
+}
+.tutorial-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+  height: auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  background-color: #ccc;
+  color: #1e1e1e;
+  padding: 20px;
+  gap: 20px;
+}
+.tutorial-text a {
+  color: #6088C6;
+}
+.tutorial-text a:hover {
+    color: #0066cc;
+  }
+#GER-game-tutorial-close {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: 1px solid #222; 
+}
+.GER-gameText-screen {
+  position: absolute;
+  width: 100%;
+  top: 85%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 15%;
+  background-color: #000;
+  opacity: 0.7;
+  border: none;
+  border-top: 1px solid #f6d893;
+}
+#GER-game-text {
+  margin: 10px 20px;
+  color: #eee;
+  user-select: none;
+  opacity: 1;
+}

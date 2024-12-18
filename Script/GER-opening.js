@@ -168,4 +168,9 @@ function byeOpening3() {
     localStorage.setItem("hasSeenGER", "true");
     console.log("記録しました: ドイツのオープニング - 読了");
   }
+  const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
+  if (hasSeenTutorial === "true") {
+    console.log("チュートリアルを削除");
+    document.getElementById("game-tutorial").style.display = "none";
+  }
 }

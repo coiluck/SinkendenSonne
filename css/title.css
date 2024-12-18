@@ -101,6 +101,60 @@ body {
     opacity: 0;
   }
 }
+.fast-fadein {  /* もっとも一般的なフェードイン */
+  animation: fastFadeIn .5s;
+  animation-fill-mode: both;
+}
+@keyframes fastFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fast-fadeout {  /* もっとも一般的なフェードアウト */
+  animation: fastFadeOut .5s;
+  animation-fill-mode: both;
+}
+@keyframes fastFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fast-fadein-text {  /* もっとも一般的なフェードイン */
+  animation: fastFadeInText .5s;
+  animation-fill-mode: both;
+}
+@keyframes fastFadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .7;
+  }
+}
+.fast-fadeout-text {  /* もっとも一般的なフェードアウト */
+  animation: fastFadeOutText .5s;
+  animation-fill-mode: both;
+}
+@keyframes fastFadeOutText {
+  0% {
+    opacity: .7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.no-display {
+  display: none;
+}
+.yes-display {
+  display: block;
+}
 
 /* タイトル部分 */
 #modal-title {

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     titleJPN.classList.add('fadein-title');
     titleGER.classList.add('fadein-title');
   }, 200);
-  console.log("display title-text");
+  console.log("表示します: title-text");
   if (window.innerWidth >= 1981) {
     alert("画面幅が大きすぎます。FHD以上の幅はレイアウトが崩れる可能性があります。Windowの幅を変更することをお勧めします");
   }
@@ -26,7 +26,7 @@ window.addEventListener('load', () => {
   setTimeout(function(){
     startButton.classList.add('active');
   }, 3500);
-  console.log("display start-button");
+  console.log("表示します: start-button");
 });
 
 document.getElementById('start-button').addEventListener('click', event => {
@@ -38,7 +38,7 @@ document.getElementById('start-button').addEventListener('click', event => {
   titleJPN.classList.add('fadeout-title');
   titleGER.classList.add('fadeout-title');
   startButton.classList.add('fadeout-title');
-  console.log("clear title-text");
+  console.log("消去します: title-text");
   // 文字消えてから国家選択表示
   setTimeout(function(){
     const countrySection = document.getElementById('country-sections');
@@ -54,7 +54,7 @@ document.getElementById('start-button').addEventListener('click', event => {
     selectJPN.style.display = "block";
     selectJPN.classList.add('fadein');
     // 上の部分見づら過ぎておもろいw
-    console.log("display country-section");
+    console.log("表示します: country-section");
   }, 800);
 });
 

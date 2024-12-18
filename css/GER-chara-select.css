@@ -115,12 +115,12 @@
 }
 @media (min-width: 601px) {
   #GER-modal-character-select .actions {
-      grid-column: 1 / 2;
-      margin-top: -47px;
-      margin-right: calc( (100% - 60px) / 3 / 2 - 1rem - 20px);/*100%-20px*2...(content-20px)/3*1...chosen-characters/2の分左にして、本体の50%分右に*/
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+    grid-column: 1 / 2;
+    margin-top: -47px;
+    margin-right: calc( (100% - 60px) / 3 / 2 - 1rem - 20px);/*100%-20px*2...(content-20px)/3*1...chosen-characters/2の分左にして、本体の50%分右に*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
   .chosen-characters {
     max-height: calc(10px + 1rem + 5px + 10px + 32px + 30px + 1.4rem + 30px + 1.4rem);
