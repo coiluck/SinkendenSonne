@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>陽の沈む場所</title>
   <link rel="stylesheet" href="./css/title.css">
+  <link rel="stylesheet" href="./css/JPN-message.css">
   <link rel="stylesheet" href="./css/GER-opening.css">
   <link rel="stylesheet" href="./css/GER-chara-select.css">
   <link rel="stylesheet" href="./css/GER-game.css">
+  <link rel="stylesheet" href="./css/GER-game2.css">
   <link rel="icon" href="./Picture/favicon.ico">
 </head>
 <body>
@@ -38,6 +40,20 @@
         <p>ハワイに落ちた一発の原子爆弾は、アジアの新たな盟主を決めた。太平洋の覇権を獲得した日本は世界最大の海軍を持ち、強大な経済圏をアジアに築いている。しかし肥大化した財閥による独占体制は経済を停滞へと導き、共栄圏の諸国は日本の搾取に反乱の火種を起こしつつある。そして最大の敵アメリカはまだ諦めていない。フィリピン内戦が終わらないのは彼らの介入のせいだ。軍事技術の優位性を示すために月面基地を作る計画を実行に移す時が来た。大丈夫、まだ太陽は我々を照らしている。</p>
       </div>
       <button id="select-country-confirm"></button>
+    </div>
+  </div>
+  
+  <div id="JPN-modal-opening">
+    <div class="messageForJPN">
+      <p class="messageForJPN-text">
+        この国のコンテンツは未完成です。
+        遊ぶことはできません。
+        コンテンツ追加の予定もありません。
+        申し訳ありませんが、ドイツシナリオで力尽きました。
+        <br><br>
+        制作者
+      </p>
+      <button id="backToTopinJPN" onclick="window.location.reload();">Topへ</button>
     </div>
   </div>
 
@@ -143,11 +159,11 @@
       <!--管理する数値-->
       <div class="GER-status-item">
         <span class="GER-label">物資:</span>
-        <span id="GER-resources">1000</span>
+        <span id="GER-resources">500</span>
       </div>
       <div class="GER-status-item">
         <span class="GER-label">他国との関係値:</span>
-        <span id="GER-relations">50</span>
+        <span id="GER-relations">10</span>
       </div>
       <div class="GER-status-item">
         <span class="GER-label">研究進度:</span>
@@ -202,9 +218,69 @@
     </div>
   </div>
 
+  <div id="GER-modal-game2">
+    <!--ゲーム画面2-->
+    <div class="GER-game-background">
+      <img src="./Picture/background.png">
+    </div>
+    <div class="GER-status-bar">
+      <!--管理する数値-->
+      <div class="GER-status-item">
+        <span class="GER-label">物資:</span>
+        <span id="GER-resources2">500</span>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">他国との関係値:</span>
+        <span id="GER-relations2">10</span>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">研究進度:</span>
+        <span id="GER-progress2">0</span>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">基地の人員:</span>
+        <div class="GER-personnel-control">
+          <button class="GER-personnel-btn" id="GER-personnel-decrease2">-</button>
+          <span id="GER-personnel-count2">50</span>
+          <button class="GER-personnel-btn" id="GER-personnel-increase2">+</button>
+        </div>
+      </div>
+      <div class="GER-status-item">
+        <span class="GER-label">月面開発:</span>
+        <span id="GER-moon-development2">0</span>
+      </div>
+    </div>
+    <div class="GER-game-screen">
+      <div class="GER-scenario-section">
+        <h2 class="GER-scenario-title">月面基地拡張計画</h2>
+        <p class="GER-scenario-description">厳しい月面環境での生存と技術開発が求められる</p>
+      </div>
+      <div class="GER-choices-section">
+        <!--選択肢-->
+        <div id="GER-selestion2-1" class="GER-choice-card2">
+          <h3>資源探査</h3>
+          <p>月面の未知の地域を探査し、貴重な資源を発見する</p>
+        </div>
+        <div id="GER-selestion2-2" class="GER-choice-card2">
+          <h3>研究開発</h3>
+          <p>月面生存に必要な革新的な技術の開発に注力する</p>
+        </div>
+        <div id="GER-selestion2-3" class="GER-choice-card2">
+          <h3>基地拡張</h3>
+          <p>現在の基地インフラを強化し、居住環境を改善する</p> 
+        </div>
+      </div>
+    </div>
+    <div class="GER-gameText-screen no-display">
+      <p id="GER-game-text2"></p>
+    </div>
+    <button id="game-button-will">aaaaaaaa</button>
+  </div>
+
   <script src="./Script/title.js"></script>
   <script src="./Script/GER-opening.js" defer></script>
   <script src="./Script/GER-chara-select.js" defer></script>
   <script src="./Script/GER-game.js" defer></script>
+  <script src="./Script/GER-game2.js" defer></script>
 </body>
 </html>

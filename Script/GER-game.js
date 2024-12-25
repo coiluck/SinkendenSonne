@@ -235,10 +235,13 @@ function resetToChoices() {
     document.querySelector(".GER-game-screen").classList.add("no-display");
     document.querySelector(".GER-gameText-screen").classList.remove("yes-display", "fast-fadein-text");
     document.querySelector(".GER-gameText-screen").classList.add("no-display");
-    document.querySelectorAll(".GER-choice-card").forEach(card => { 
-      card.removeEventListener('click', handleChoiceClick);
-    });
-    document.getElementById('GER-modal-game').removeEventListener('click', handleModalClick);
+    setTimeout(function () {
+      document.querySelector(".GER-gameText-screen").classList.remove("no-display");
+      document.querySelector(".GER-gameText-screen").classList.add("yes-display");
+      document.querySelector(".GER-gameText-screen").classList.add("fast-fadein-text");
+      // ストーリーの表示を開始
+      displayMiddleStory();
+    }, 500);
   }
 }
 
@@ -325,3 +328,49 @@ function initializeGame() {
 
 // ゲーム初期化
 initializeGame();
+
+// 中間ストーリー（共栄圏の崩壊イベント）
+function displayMiddleStory() {
+  const storyTextElement = document.getElementById('GER-game-text');
+  const storySequence = [
+    "本国からの伝達: インドネシア反乱",
+    "新たな挑戦が待つ未来に向け、チームは一丸となる。",
+    "技術と忍耐の結晶が形になりつつある。"
+  ];
+  let storyIndex = 0;
+  storyTextElement.textContent = storySequence[storyIndex];
+  // クリックでストーリーを更新
+  document.getElementById('GER-modal-game').addEventListener('click', function onStoryClick() {
+    storyIndex++;
+    if (storyIndex < storySequence.length) {
+      storyTextElement.textContent = storySequence[storyIndex];
+    } else {
+      // ストーリーが終わったら...
+      changeToGame2();
+      console.log("モーダル入れ替え成功");
+    }
+  });
+}
+
+function changeToGame2() {
+  // 数値を別のモーダルで使えるように取得
+  const currentResources = document.getElementById('GER-resources').textContent;
+  const currentResourcesNum = parseInt(currentResources ,10); // 補給はこのターンも継続
+  const currentRelations = document.getElementById('GER-relations').textContent;
+  const currentProgress = document.getElementById('GER-progress').textContent;
+  const currentPersonnel = document.getElementById('GER-personnel-count').textContent;
+  const currentMoonDevelopment = document.getElementById('GER-moon-development').textContent;
+  // それを新しいモーダルに入れる
+  document.getElementById('GER-resources2').textContent = currentResourcesNum + 500 * window.gameDataByChar.hokyuu;
+  document.getElementById('GER-relations2').textContent = currentRelations;
+  document.getElementById('GER-progress2').textContent = currentProgress;
+  document.getElementById('GER-personnel-count2').textContent = currentPersonnel;
+  document.getElementById('GER-moon-development2').textContent = currentMoonDevelopment;
+  // いれる処理が終わってからid: GER-modal-gameを非表示にし、id: GER-modal-game2を表示
+  document.querySelector('.GER-gameText-screen').classList.add("fast-fadeout-text");
+  setTimeout(function(){
+    document.getElementById('GER-modal-game').style.display = "none";
+    document.getElementById('GER-modal-game2').style.display = "block";
+  }, 500);
+}
+

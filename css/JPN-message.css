@@ -1,0 +1,65 @@
+#JPN-modal-opening {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  z-index: 400;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+#JPN-modal-opening .messageForJPN {
+  position: absolute;
+  top: 0;
+  left: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  max-width: 500px;
+  height: auto;
+  padding: 20px 40px;
+  background-image: url('../Picture/paper.jpg');
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: #e0e0e0;
+}
+#JPN-modal-opening .messageForJPN::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 内側の枠線 */
+  pointer-events: none;
+}
+#JPN-modal-opening .messageForJPN::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 外側の枠線 */
+  pointer-events: none;
+}
+#JPN-modal-opening .messageForJPN .messageForJPN-text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: #1e1e1e;
+  font-size: .8em;
+}
+#backToTopinJPN {
+  display: flex;
+  margin: 20px auto 0;
+  border: none;
+  background: transparent;
+  color: #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+}

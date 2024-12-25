@@ -1,0 +1,74 @@
+#GER-modal-game2 {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  z-index: 400;
+  color: #e0e0e0;
+  background-color: #121212;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+.GER-choice-card2 {
+  background-color: #121212;
+  border: 2px solid #8b0000;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.GER-choice-card2:hover {
+  transform: scale(1.05);
+}
+#GER-game-text2 {
+  margin: 10px 20px;
+  color: #eee;
+  user-select: none;
+  opacity: 1;
+}
+#game-button-will {
+  display: none; /* 使うときはblockではなくflexを指定して */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  max-width: 300px;
+  height: 1.5em;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  color: #1e1e1e;
+  background-color: #e0e0e0;
+  border: none;
+  font-size: 1em;
+  background-image: url('../Picture/paper.jpg');
+  background-size: cover;
+  background-blend-mode: luminosity;
+  cursor: pointer;
+}
+#game-button-will::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 内側の枠線 */
+  pointer-events: none;
+}
+#game-button-will::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 外側の枠線 */
+  pointer-events: none;
+}

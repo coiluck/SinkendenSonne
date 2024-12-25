@@ -105,7 +105,7 @@ document.getElementById('select-country-confirm').addEventListener('click', func
   } else if (forWho === "天皇万歳！"){
     console.log("選択: 日本")
     setTimeout(function(){
-      document.getElementById("JPN-modal-opening").style.display = "flex";
+      document.getElementById("JPN-modal-opening").style.display = "block";
       document.getElementById("JPN-modal-opening").classList.add('fadein');
     }, 1000); // タイトルが消えるのと同時にフェードイン開始
   } else {
