@@ -205,3 +205,78 @@
   user-select: none;
   opacity: 1;
 }
+.two-button-container {
+  display: none; /* 使うときはflexね！ */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.two-button-container button {
+  width: 60%;
+  max-width: 300px;
+  min-height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  color: #1e1e1e;
+  background-color: #e0e0e0;
+  border: none;
+  font-size: 1em;
+  background-image: url('../Picture/paper.jpg');
+  background-size: cover;
+  background-blend-mode: luminosity;
+  cursor: pointer;
+}
+#save-Jew {
+  position: relative;
+}
+#save-Jew::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 内側の枠線 */
+  pointer-events: none;
+}
+#save-Jew::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 外側の枠線 */
+  pointer-events: none;
+}
+#ignore-Jew {
+  position: relative;
+}
+#ignore-Jew::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 内側の枠線 */
+  pointer-events: none;
+}
+#ignore-Jew::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 外側の枠線 */
+  pointer-events: none;
+}

@@ -39,6 +39,9 @@ body {
   width: 100%;
   min-height: 100%;
 }
+button {
+  cursor: pointer;
+}
 .fadein-title {
   animation: fadeInTitle 5s;
   animation-fill-mode: both;

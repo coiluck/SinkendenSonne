@@ -170,7 +170,7 @@ function byeOpening3() {
   }
   const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
   if (hasSeenTutorial === "true") {
-    console.log("チュートリアルを削除");
+    console.log("削除しました: チュートリアル");
     document.getElementById("game-tutorial").style.display = "none";
   }
 }

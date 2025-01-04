@@ -75,12 +75,12 @@ document.getElementById("GER-personnel-increase").addEventListener("click", incr
 const gameScenarios = [
   [
     {
-      title: '資源探査',
-      effects: [{ stat: 'resources', value: 10 }],
+      title: '関係改善',
+      effects: [{ stat: 'relations', value: 10 }],
       stories: [
-        '未知の月面クレーターに到着。地質センサーが反応を示し始める。',
-        '岩石サンプルを採取。希少な鉱物の痕跡を発見。',
-        '探査チームが驚くべき地質学的特徴を報告する。'
+        '冷え切っていたドイツ - 日本間の関係改善を図る。',
+        'これはてきすと２',
+        'これはてきすと３'
       ]
     },
     {
@@ -193,14 +193,6 @@ function updateChoices() {
     card.querySelector("p").textContent = effectDescriptions;
     card.id = `GER-selestion${index + 1}`;
   });
-
-  // 物資を補充
-  const resourcesElement = document.getElementById("GER-resources");
-  let resources = parseInt(resourcesElement.textContent, 10);
-  resources += 500 * window.gameDataByChar.hokyuu;
-  resourcesElement.textContent = resources;
-  console.log("ゲーム選択肢を更新しました");
-  console.log("補給適用倍率: 500 * " + window.gameDataByChar.hokyuu);
 }
 
 // ストーリーテキストを更新
@@ -229,6 +221,13 @@ function resetToChoices() {
   // 新しい選択肢
   if (currentRound < gameScenarios.length) {
     updateChoices();
+    // 物資を補充(ここに書けば初手で実行されないな)
+    const resourcesElement = document.getElementById("GER-resources");
+    let resources = parseInt(resourcesElement.textContent, 10);
+    resources += 500 * window.gameDataByChar.hokyuu;
+    resourcesElement.textContent = resources;
+    console.log("ゲーム選択肢を更新しました");
+    console.log("補給適用倍率: 500 * " + window.gameDataByChar.hokyuu);
   } else {
     // ゲーム終了処理（後で関数書いて入れておく）
     document.querySelector(".GER-game-screen").classList.remove("fast-fadein");
@@ -239,8 +238,8 @@ function resetToChoices() {
       document.querySelector(".GER-gameText-screen").classList.remove("no-display");
       document.querySelector(".GER-gameText-screen").classList.add("yes-display");
       document.querySelector(".GER-gameText-screen").classList.add("fast-fadein-text");
-      // ストーリーの表示を開始
-      displayMiddleStory();
+      // 終わったら...
+      displayFindJewStory();
     }, 500);
   }
 }
@@ -293,6 +292,9 @@ function updateStatus(effects, personnelCount) {
     if (effect.stat === 'progress') {
       value *= window.gameDataByChar.kennkyuu;
       console.log("スコア適用倍率: " + ratio + " * " + window.gameDataByChar.kennkyuu); // スコア適用倍率を表示
+    } else if (effect.stat === 'relations') {
+      value = effect.value * window.gameDataByChar.kannkei;
+      console.log("スコア適用倍率: " + window.gameDataByChar.kannkei);
     } else {
       console.log("スコア適用倍率: " + ratio); // スコア適用倍率を表示
     }
@@ -329,6 +331,95 @@ function initializeGame() {
 // ゲーム初期化
 initializeGame();
 
+// 中間ストーリー（ユダヤ人イベント）
+function displayFindJewStory() {
+  // ストーリー(共栄圏の崩壊を参考にしながら書いておいて)
+  const textElement = document.getElementById('GER-game-text');
+  const JewStory1 = [
+    "ある日",
+    "どうやらつかれているようで",
+    "ユダヤ人だった！",
+    "我々は彼の処遇を決めなければならない",
+  ]
+  let JewStoryIndex1 = 0;
+  textElement.textContent = JewStory1[JewStoryIndex1];
+  // クリックでストーリーを更新
+  document.getElementById('GER-modal-game').addEventListener('click', function onStoryClick() {
+    JewStoryIndex1++;
+    if (JewStoryIndex1 < JewStory1.length) {
+      textElement.textContent = JewStory1[JewStoryIndex1];
+    } else {
+      // ストーリーが終わったら...
+      document.querySelector(".two-button-container").style.display = "flex"
+    }
+  });
+}
+
+document.getElementById('save-Jew').addEventListener('click', function () {
+  document.querySelector(".two-button-container").classList.add("fast-fadeout");
+  setTimeout(function(){ 
+    document.querySelector(".two-button-container").style.display = "none"
+    displaySaveJewStory();
+  }, 1000);
+});
+
+document.getElementById('ignore-Jew').addEventListener('click', function () {
+  document.querySelector(".two-button-container").classList.add("fast-fadeout");
+  setTimeout(function(){ 
+    document.querySelector(".two-button-container").style.display = "none"
+    displayIgnoreJewStory();
+  }, 1000);
+});
+
+// ボタン1のストーリー
+function displaySaveJewStory() {
+  const textElement = document.getElementById('GER-game-text');
+  const saveJewStory = [
+    "あなたはユダヤ人を救うことを決めた。",
+    "彼は感謝の言葉を述べた。",
+    "後に彼が助けとなると知ることになる。",
+  ];
+  let storyIndex = 0;
+
+  const onSaveJewClick = function () {
+    storyIndex++;
+    if (storyIndex < saveJewStory.length) {
+      textElement.textContent = saveJewStory[storyIndex];
+    } else {
+      // ストーリー終了後に次の関数を呼び出す
+      textElement.removeEventListener('click', onSaveJewClick);
+      displayMiddleStory();
+    }
+  };
+  textElement.textContent = saveJewStory[storyIndex];
+  textElement.addEventListener('click', onSaveJewClick);
+}
+
+// ボタン2のストーリー
+function displayIgnoreJewStory() {
+  const textElement = document.getElementById('GER-game-text');
+  const modalElement = document.getElementById('GER-modal-game');
+  const ignoreJewStory = [
+    "あなたはユダヤ人を無視することを決めた。",
+    "彼は失望し去っていった。",
+    "この決断が後に大きな影響を及ぼすとは知らなかった。",
+  ];
+  let storyIndex = 0;
+
+  const onIgnoreJewClick = function () {
+    storyIndex++;
+    if (storyIndex < ignoreJewStory.length) {
+      textElement.textContent = ignoreJewStory[storyIndex];
+    } else {
+      // ストーリー終了後に次の関数を呼び出す
+      modalElement.removeEventListener('click', onIgnoreJewClick);
+      displayMiddleStory();
+    }
+  };
+  textElement.textContent = ignoreJewStory[storyIndex];
+  modalElement.addEventListener('click', onIgnoreJewClick);
+}
+
 // 中間ストーリー（共栄圏の崩壊イベント）
 function displayMiddleStory() {
   const storyTextElement = document.getElementById('GER-game-text');
@@ -347,7 +438,7 @@ function displayMiddleStory() {
     } else {
       // ストーリーが終わったら...
       changeToGame2();
-      console.log("モーダル入れ替え成功");
+      console.log("入れ替えました: ゲームモーダル");
     }
   });
 }

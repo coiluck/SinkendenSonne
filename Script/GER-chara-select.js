@@ -1,9 +1,9 @@
 const characters = [
   // キャラクター情報を取得
-  { id: 'char1', name: 'ラグナー・フォン・ラート', job: '哀れみ深い紳士', effect: "他国との関係値の上昇効果 +25%" },
-  { id: 'char2', name: 'オットー・ハーン', job: '帝国の科学者', effect: "研究速度 +15%" },
-  { id: 'char3', name: 'フンベルト・シェーンベルク', job: '戦略的な補給改革者', effect: "毎ターンの補給物資 +10%" },
-  { id: 'char4', name: 'レーオン・エーベルハルト', job: '冷徹な兵站効率師', effect: "人員ひとりあたりの消費物資量 -15%" }
+  { id: 'char1', name: 'ラグナー・フォン・ラート', job: '哀れみ深い紳士', effect: "他国との関係値の上昇効果 +25%", selectText: "関係値 +25%" },
+  { id: 'char2', name: 'オットー・ハーン', job: '帝国の科学者', effect: "研究速度 +15%", selectText: "研究 +15%" },
+  { id: 'char3', name: 'フンベルト・シェーンベルク', job: '戦略的な補給改革者', effect: "毎ターンの補給物資 +10%", selectText: "補給 +10%" },
+  { id: 'char4', name: 'レーオン・エーベルハルト', job: '冷徹な兵站効率師', effect: "人員ひとりあたりの消費物資量 -15%", selectText: "物資消費 -10%" }
 ];
 
 // 選択されたキャラクターを格納する配列
@@ -55,7 +55,7 @@ characters.forEach(character => {
     selectedCharacters.push(character);
     // リストに追加
     const listItem = document.createElement('li');
-    listItem.innerHTML = character.name + "<br>" + "(" + character.job + ")";
+    listItem.innerHTML = character.name + "<br>" + "(" + character.selectText + ")";
     listItem.setAttribute('data-id', character.id); // キャラクターIDを設定
     chosenList.appendChild(listItem);
     // リストアイテムのクリックイベントで削除処理を設定
@@ -96,7 +96,7 @@ document.getElementById('confirm-button').addEventListener('click', function() {
   }, 1000);
   const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
   if (hasSeenTutorial === "true") {
-    console.log("チュートリアルを削除");
+    console.log("削除しました: チュートリアル");
     document.getElementById("game-tutorial").style.display = "none";
   }
   setTimeout(function(){ 
