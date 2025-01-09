@@ -187,7 +187,10 @@ let hasSavedJPN = false; // 分岐に使用
 let hasSavedJewishMan = false; // 分岐に使用
 
 document.querySelector("#save-Jew").addEventListener("click", function() {
+  // 別にいいんだけどなんでquerySelector使っているんだ
   hasSavedJewishMan = true;
+  document.getElementById("ENDING_TYPE_JEW").textContent = "true";
+  console.log("記録しました: 男 - 救済")
 });
 
 // 選択肢を更新
@@ -253,7 +256,11 @@ function resetToChoices2() {
     console.log("補給適用倍率: 500 * " + window.gameDataByChar.hokyuu);
   } else {
     // ゲーム終了処理（後で関数書いて入れておく）
-    alert("終了!");
+    console.log("終了 - ゲームコンテンツ");
+    document.getElementById("GER-game2-choice").classList.remove("fast-fadein");
+    document.getElementById("GER-game2-choice").classList.add("no-display");
+    document.getElementById("GER-gameTextBox2").classList.remove("yes-display", "fast-fadein-text");
+    document.getElementById("GER-gameTextBox2").classList.add("no-display");
     determineEnding();
   }
 }
@@ -281,6 +288,7 @@ function handleChoiceClick2(event) {
       // 日本を救った場合、記録
       if (currentRound2 === 0 && gameScenarios2[currentRound2][index].title === "大日本帝国基地からの連絡") {
         hasSavedJPN = true;
+        document.getElementById("ENDING_TYPE_JPN").textContent = "true";
         console.log("記録しました: 日本基地 - 救済");
       }
       // ボタンテキストを取得して書き換え
@@ -369,12 +377,40 @@ function determineEnding() {
   console.log("最終スコア: " + Relations + "," + Progress + "," + Development);
   if (Progress >= 100) {
     // 誰につく？の分岐
+    document.getElementById("ENDING_TYPE").textContent = "TYPE_1";
+    document.getElementById("GER-modal-game2").classList.add("fadeout");
+    setTimeout(() => {
+      document.getElementById("GER-modal-game2").style.display = "none";
+      document.getElementById("GER-modal-end1").style.display = "block";
+      document.getElementById("GER-modal-end1").classList.add("fadein");
+    }, 1000);
   } else if (Relations >= 100 && Development >= 100 && hasSavedJPN == True) {
     // 日本と統合（ドイツ優位）
+    document.getElementById("ENDING_TYPE").textContent = "TYPE_2";
+    document.getElementById("GER-modal-game2").classList.add("fadeout");
+    setTimeout(() => {
+      document.getElementById("GER-modal-game2").style.display = "none";
+      document.getElementById("GER-modal-end2").style.display = "block";
+      document.getElementById("GER-modal-end2").classList.add("fadein");
+    }, 1000);
   } else if (Development >= 100) {
     // 月面帝国
+    document.getElementById("ENDING_TYPE").textContent = "TYPE_3";
+    document.getElementById("GER-modal-game2").classList.add("fadeout");
+    setTimeout(() => {
+      document.getElementById("GER-modal-game2").style.display = "none";
+      document.getElementById("GER-modal-end2").style.display = "block";
+      document.getElementById("GER-modal-end2").classList.add("fadein");
+    }, 1000);
   } else if (Relations >= 100 && hasSavedJPN == True) {
     // 日本と統合（日本優位）
+    document.getElementById("ENDING_TYPE").textContent = "TYPE_4";
+    document.getElementById("GER-modal-game2").classList.add("fadeout");
+    setTimeout(() => {
+      document.getElementById("GER-modal-game2").style.display = "none";
+      document.getElementById("GER-modal-end2").style.display = "block";
+      document.getElementById("GER-modal-end2").classList.add("fadein");
+    }, 1000);
   } else {
     determineEndingToBadEnd();
   }
@@ -382,5 +418,12 @@ function determineEnding() {
 
 function determineEndingToBadEnd(){
   // すべて終わっていないor物資が足りなくなる
-  alert("Bad End.")
+  alert("Bad End.");  // あとでけす
+  document.getElementById("ENDING_TYPE").textContent = "TYPE_5";
+  document.getElementById("GER-modal-game2").classList.add("fadeout");
+  setTimeout(() => {
+    document.getElementById("GER-modal-game2").style.display = "none";
+    document.getElementById("GER-modal-end2").style.display = "block";
+    document.getElementById("GER-modal-end2").classList.add("fadein");
+  }, 1000);
 }

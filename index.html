@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./css/GER-chara-select.css">
   <link rel="stylesheet" href="./css/GER-game.css">
   <link rel="stylesheet" href="./css/GER-game2.css">
+  <link rel="stylesheet" href="./css/GER-ending.css">
   <link rel="icon" href="./Picture/favicon.ico">
 </head>
 <body>
@@ -281,10 +282,41 @@
     <button id="game-button-will">この文章は表示されません</button>
   </div>
 
+  <div id="GER-modal-end1">
+    <!--誰につく？-->
+    <div class="GER-ending-background">
+      <img src="./Picture/background.png">
+    </div>
+    <div class="text-container">
+      <p id="GER-ending1-text">TYPE1</p>
+    </div>
+    <div id="GER-ending-button-container">
+      <button id="GER-endbutton-1" class="no-display"></button>
+      <button id="GER-endbutton-2" class="no-display"></button>
+      <button id="GER-endbutton-3" class="no-display"></button>
+      <button id="GER-endbutton-4" class="no-display"></button>
+    </div>
+  </div>
+
+  <div id="GER-modal-end2">
+    <!--その他のエンディング-->
+    <div class="GER-ending-background">
+      <img src="./Picture/background.png">
+    </div>
+    <div class="text-container">
+      <p id="GER-ending2-text">TYPE2</p>
+    </div>
+  </div>
+
+  <div id="ENDING_TYPE" class="no-display"></div>
+  <div id="ENDING_TYPE_JEW" class="no-display"></div>
+  <div id="ENDING_TYPE_JPN" class="no-display"></div>
+
   <script src="./Script/title.js"></script>
   <script src="./Script/GER-opening.js" defer></script>
   <script src="./Script/GER-chara-select.js" defer></script>
   <script src="./Script/GER-game.js" defer></script>
   <script src="./Script/GER-game2.js" defer></script>
+  <script src="./Script/GER-end1.js" defer></script>
 </body>
 </html>

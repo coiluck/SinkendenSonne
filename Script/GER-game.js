@@ -331,116 +331,191 @@ function initializeGame() {
 // ゲーム初期化
 initializeGame();
 
-// 中間ストーリー（ユダヤ人イベント）
+// イベントリスナーの重複登録を防ぐためのフラグ管理
+const gameState = {
+  isStoryInProgress: false,
+  currentStoryPhase: 'initial', // 'initial', 'jewStory', 'middleStory'
+  storyListeners: new Set()
+};
+
+// ストーリーリスナーの管理
+function addStoryListener(element, listener) {
+  if (!gameState.storyListeners.has(listener)) {
+    element.addEventListener('click', listener);
+    gameState.storyListeners.add(listener);
+  }
+}
+
+function removeStoryListener(element, listener) {
+  if (gameState.storyListeners.has(listener)) {
+    element.removeEventListener('click', listener);
+    gameState.storyListeners.delete(listener);
+  }
+}
+
+// ユダヤ人イベント
 function displayFindJewStory() {
-  // ストーリー(共栄圏の崩壊を参考にしながら書いておいて)
+  if (gameState.currentStoryPhase !== 'initial') return;
+  
+  gameState.currentStoryPhase = 'jewStory';
+  gameState.isStoryInProgress = true;
+  
   const textElement = document.getElementById('GER-game-text');
+  const modalElement = document.getElementById('GER-modal-game');
+  const buttonContainer = document.querySelector(".two-button-container");
+  
   const JewStory1 = [
     "ある日",
     "どうやらつかれているようで",
     "ユダヤ人だった！",
     "我々は彼の処遇を決めなければならない",
-  ]
-  let JewStoryIndex1 = 0;
-  textElement.textContent = JewStory1[JewStoryIndex1];
-  // クリックでストーリーを更新
-  document.getElementById('GER-modal-game').addEventListener('click', function onStoryClick() {
-    JewStoryIndex1++;
-    if (JewStoryIndex1 < JewStory1.length) {
-      textElement.textContent = JewStory1[JewStoryIndex1];
+    "彼の身柄を本国に差し出せばある程度の報酬が見込めるが、彼がどうなるかはわからない"
+  ];
+  
+  let storyIndex = 0;
+  textElement.textContent = JewStory1[storyIndex];
+
+  const storyClickHandler = () => {
+    if (!gameState.isStoryInProgress) return;
+    
+    storyIndex++;
+    if (storyIndex < JewStory1.length) {
+      textElement.textContent = JewStory1[storyIndex];
     } else {
-      // ストーリーが終わったら...
-      document.querySelector(".two-button-container").style.display = "flex"
+      removeStoryListener(modalElement, storyClickHandler);
+      buttonContainer.style.display = "flex";
     }
-  });
+  };
+
+  addStoryListener(modalElement, storyClickHandler);
 }
 
-document.getElementById('save-Jew').addEventListener('click', function () {
-  document.querySelector(".two-button-container").classList.add("fast-fadeout");
-  setTimeout(function(){ 
-    document.querySelector(".two-button-container").style.display = "none"
-    displaySaveJewStory();
-  }, 1000);
-});
-
-document.getElementById('ignore-Jew').addEventListener('click', function () {
-  document.querySelector(".two-button-container").classList.add("fast-fadeout");
-  setTimeout(function(){ 
-    document.querySelector(".two-button-container").style.display = "none"
-    displayIgnoreJewStory();
-  }, 1000);
-});
-
-// ボタン1のストーリー
+// // 選択肢 - 上
 function displaySaveJewStory() {
   const textElement = document.getElementById('GER-game-text');
+  const modalElement = document.getElementById('GER-modal-game');
+  
+  gameState.isStoryInProgress = true;
   const saveJewStory = [
     "あなたはユダヤ人を救うことを決めた。",
     "彼は感謝の言葉を述べた。",
-    "後に彼が助けとなると知ることになる。",
+    "後に彼が助けとなると知ることになる。"
   ];
+  
   let storyIndex = 0;
+  textElement.textContent = saveJewStory[storyIndex];
 
-  const onSaveJewClick = function () {
+  const saveJewClickHandler = () => {
+    if (!gameState.isStoryInProgress) return;
+    
     storyIndex++;
     if (storyIndex < saveJewStory.length) {
       textElement.textContent = saveJewStory[storyIndex];
     } else {
-      // ストーリー終了後に次の関数を呼び出す
-      textElement.removeEventListener('click', onSaveJewClick);
-      displayMiddleStory();
+      removeStoryListener(modalElement, saveJewClickHandler);
+      gameState.currentStoryPhase = 'middleStory';
+      document.querySelector('.GER-gameText-screen').classList.add("fast-fadeout-text");
+      setTimeout(() => {
+        document.querySelector('.GER-gameText-screen').classList.remove("fast-fadeout-text");
+        document.querySelector('.GER-gameText-screen').classList.add("fast-fadein-text");
+        displayMiddleStory();
+      }, 500);
     }
   };
-  textElement.textContent = saveJewStory[storyIndex];
-  textElement.addEventListener('click', onSaveJewClick);
+
+  addStoryListener(modalElement, saveJewClickHandler);
 }
 
-// ボタン2のストーリー
+// 選択肢 - 下
 function displayIgnoreJewStory() {
   const textElement = document.getElementById('GER-game-text');
   const modalElement = document.getElementById('GER-modal-game');
+  
+  gameState.isStoryInProgress = true;
   const ignoreJewStory = [
     "あなたはユダヤ人を無視することを決めた。",
     "彼は失望し去っていった。",
-    "この決断が後に大きな影響を及ぼすとは知らなかった。",
+    "物資を 200 手に入れた",
+    "この決断が後に大きな影響を及ぼすとは知らなかった。"
   ];
+  
   let storyIndex = 0;
+  textElement.textContent = ignoreJewStory[storyIndex];
 
-  const onIgnoreJewClick = function () {
+  const ignoreJewClickHandler = () => {
+    if (!gameState.isStoryInProgress) return;
+    
     storyIndex++;
+    if (storyIndex === 2) {
+      document.getElementById("GER-resources").textContent = Number(document.getElementById("GER-resources").textContent) + 200;
+    }
     if (storyIndex < ignoreJewStory.length) {
       textElement.textContent = ignoreJewStory[storyIndex];
     } else {
-      // ストーリー終了後に次の関数を呼び出す
-      modalElement.removeEventListener('click', onIgnoreJewClick);
-      displayMiddleStory();
+      removeStoryListener(modalElement, ignoreJewClickHandler);
+      gameState.currentStoryPhase = 'middleStory';
+      document.querySelector('.GER-gameText-screen').classList.add("fast-fadeout-text");
+      setTimeout(() => {
+        document.querySelector('.GER-gameText-screen').classList.remove("fast-fadeout-text");
+        document.querySelector('.GER-gameText-screen').classList.add("fast-fadein-text");
+        displayMiddleStory();
+      }, 500);
     }
   };
-  textElement.textContent = ignoreJewStory[storyIndex];
-  modalElement.addEventListener('click', onIgnoreJewClick);
+
+  addStoryListener(modalElement, ignoreJewClickHandler);
 }
 
-// 中間ストーリー（共栄圏の崩壊イベント）
+// ボタンイベントリスナー
+document.getElementById('save-Jew').addEventListener('click', function() {
+  const buttonContainer = document.querySelector(".two-button-container");
+  buttonContainer.classList.add("fast-fadeout");
+  setTimeout(() => {
+    buttonContainer.style.display = "none";
+    gameState.isStoryInProgress = false;
+    displaySaveJewStory();
+  }, 1000);
+});
+
+document.getElementById('ignore-Jew').addEventListener('click', function() {
+  const buttonContainer = document.querySelector(".two-button-container");
+  buttonContainer.classList.add("fast-fadeout");
+  setTimeout(() => {
+    buttonContainer.style.display = "none";
+    gameState.isStoryInProgress = false;
+    displayIgnoreJewStory();
+  }, 1000);
+});
+
+// 中間ストーリー
 function displayMiddleStory() {
-  const storyTextElement = document.getElementById('GER-game-text');
+  if (gameState.currentStoryPhase !== 'middleStory') return;
+  
+  const textElement = document.getElementById('GER-game-text');
+  const modalElement = document.getElementById('GER-modal-game');
+  
   const storySequence = [
     "本国からの伝達: インドネシア反乱",
     "新たな挑戦が待つ未来に向け、チームは一丸となる。",
     "技術と忍耐の結晶が形になりつつある。"
   ];
+  
   let storyIndex = 0;
-  storyTextElement.textContent = storySequence[storyIndex];
-  // クリックでストーリーを更新
-  document.getElementById('GER-modal-game').addEventListener('click', function onStoryClick() {
+  textElement.textContent = storySequence[storyIndex];
+
+  const middleStoryClickHandler = () => {
+    if (!gameState.isStoryInProgress) return;
+    
     storyIndex++;
     if (storyIndex < storySequence.length) {
-      storyTextElement.textContent = storySequence[storyIndex];
+      textElement.textContent = storySequence[storyIndex];
     } else {
-      // ストーリーが終わったら...
+      removeStoryListener(modalElement, middleStoryClickHandler);
+      gameState.isStoryInProgress = false;
       changeToGame2();
-      console.log("入れ替えました: ゲームモーダル");
     }
-  });
+  };
+  addStoryListener(modalElement, middleStoryClickHandler);
 }
 
 function changeToGame2() {
@@ -458,10 +533,10 @@ function changeToGame2() {
   document.getElementById('GER-personnel-count2').textContent = currentPersonnel;
   document.getElementById('GER-moon-development2').textContent = currentMoonDevelopment;
   // いれる処理が終わってからid: GER-modal-gameを非表示にし、id: GER-modal-game2を表示
+  document.querySelector('.GER-gameText-screen').classList.remove("fast-fadein-text");
   document.querySelector('.GER-gameText-screen').classList.add("fast-fadeout-text");
   setTimeout(function(){
     document.getElementById('GER-modal-game').style.display = "none";
     document.getElementById('GER-modal-game2').style.display = "block";
   }, 500);
 }
-
