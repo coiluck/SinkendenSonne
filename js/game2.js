@@ -111,7 +111,7 @@ const gameScenarios2 = [
     [
       {
         title: '大日本帝国基地からの連絡',
-        effects: [{ stat: 'relations', value: 10 }, { stat: 'resources', value: -200 }],
+        effects: [{ stat: 'relations', value: 20 }, { stat: 'resources', value: -200 }],
         stories: [
           '1962年12月5日、途絶えていた通信回線が一瞬だけ開いた。',
           '発信元は、東方に位置する大日本帝国の華陽基地。',
@@ -146,7 +146,7 @@ const gameScenarios2 = [
     [
       {
         title: '地下核精製実験の開始',
-        effects: [{ stat: 'resources', value: -50 }, { stat: 'progress', value: 5 }],
+        effects: [{ stat: 'resources', value: -50 }, { stat: 'progress', value: 15 }],
         stories: [
           '月面地下深部にて、核物質の精製実験が秘密裏に開始された。',
           '想定以上の放射線遮蔽コストと機材故障に見舞われつつも、第一段階は成功を収めた。',
@@ -198,7 +198,7 @@ const gameScenarios2 = [
       },
       {
         title: '日本の調査チームの保護',
-        effects: [{ stat: 'relations', value: 22 }],
+        effects: [{ stat: 'relations', value: 19 }],
         stories: [
           '突発的な通信障害の中、日本側調査隊からの支援信号を受信した。',
           '我々は彼らを一時的に保護。正式な報告も、政治的意図も交わされなかった。',
@@ -230,7 +230,7 @@ const gameScenarios2 = [
       },
       {
         title: '観測データの共有',
-        effects: [{ stat: 'relations', value: 15 }, { stat: 'progress', value: -5 }],
+        effects: [{ stat: 'relations', value: 17 }, { stat: 'progress', value: -5 }],
         stories: [
           '月面の気象データと観測結果を、日本側と共有することで合意した。',
           '信頼とはまだ言えない。軍事的価値を持たぬ範囲での情報共有のみだ。',
@@ -242,7 +242,7 @@ const gameScenarios2 = [
     [
       {
         title: '淡水循環技術の試験導入',
-        effects: [{ stat: 'relations', value: 10 }, { stat: 'moon-development', value: 5 }],
+        effects: [{ stat: 'relations', value: 10 }, { stat: 'moon-development', value: 10 }],
         stories: [
           '日本側の水処理技術に倣い、独自の再現実験が行われた。',
           '共同開発ではない。模倣と検証による独自路線だ。',
@@ -252,7 +252,7 @@ const gameScenarios2 = [
       },
       {
         title: '核兵器の完全配備',
-        effects: [{ stat: 'progress', value: 15 }],
+        effects: [{ stat: 'progress', value: 17 }],
         stories: [
           '月面における核兵器の完全配備が完了した。',
           'それは防衛ではない。抑止であり、宣告である。',

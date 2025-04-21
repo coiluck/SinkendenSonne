@@ -154,7 +154,7 @@ const gameScenarios = [
     },
     {
       title: '日本基地から物資の譲渡',
-      effects: [{ stat: 'relations', value: 12 }, { stat: "resources", value: 100}],
+      effects: [{ stat: 'relations', value: 12 }, { stat: "resources", value: 100 }],
       stories: [
         '大日本帝国の月面基地と通信を繋ぎ、支援の要請を行った。',
         '物資の譲渡と同時に、両国の基地間での医療支援協定が交わされる。',
@@ -176,7 +176,7 @@ const gameScenarios = [
     },
     {
       title: '補給船停泊所の整備',
-      effects: [{ stat: "moon-development", value: 5}, { stat: 'resources', value: 50 }],
+      effects: [{ stat: "moon-development", value: 9 }, { stat: 'resources', value: 50 }],
       stories: [
         'これから何度も訪れるであろう補給線のため、月面着陸地点に半永久的な停泊所を整備することにした。',
         "粉塵舞い上がる地表に、初めて「繰り返し使う」ことを前提とした構造物が建つ。",
@@ -187,7 +187,7 @@ const gameScenarios = [
     },
     {
       title: '生活棟の拡張工事',
-      effects: [{ stat: 'moon-development', value: 15 }],
+      effects: [{ stat: 'moon-development', value: 12 }],
       stories: [
         '我々は狭苦しい宇宙船にお別れする計画に取り掛かった。',
         '居住スペースの拡張によってより快適な月面生活を送れるだろう。',
@@ -258,7 +258,7 @@ const gameScenarios = [
     },
     {
       title: '通信システムの拡張',
-      effects: [{ stat: 'moon-development', value: 15 }],
+      effects: [{ stat: 'moon-development', value: 14 }],
       stories: [
         "通信の遅延が、生死を分けることがある。月の裏側ではそれが常識だ。",
         "新たに配備された中継塔は、静かに起動を開始した。",
