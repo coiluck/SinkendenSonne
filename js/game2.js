@@ -485,7 +485,7 @@ function determineEnding() {
   if (Progress >= 100) {
     // 誰につく？の分岐
     // modal-resultの設定
-    document.getElementById("result-title").textContent = "誰につくか選ぶ";
+    document.getElementById("result-title").textContent = "忠誠の行方";
     addItemsToList(["研究が終わっている"]);
     // これだけこの中の分岐を
     if (hasSavedJew == false) {
@@ -508,11 +508,11 @@ function determineEnding() {
         AnimationOfResultModal()
       }, 1500);
     }, 1000);
-  } else if (Relations >= 100 && Development >= 100 && hasSavedJPN == true) {
+  } else if (Relations >= 100 && Development >= 100 && hasSavedJew == true) {
     // 日本と統合（ドイツ優位）
     // modal-resultの設定
-    document.getElementById("result-title").textContent = "日本基地の傘下に入る";
-    addItemsToList(["研究が終わっていない", "関係値が100以上", "月面開発が100以上", "日本基地を救った"]);
+    document.getElementById("result-title").textContent = "協調";
+    addItemsToList(["研究が終わっていない", "関係値が100以上", "月面開発が100以上", "ユダヤ人を見逃した"]);
     // モーダル移行
     document.getElementById("ENDING_TYPE").textContent = "TYPE_2";
     document.getElementById("modal-game2").classList.add("fadeout");
@@ -527,7 +527,7 @@ function determineEnding() {
   } else if (Development >= 100 && hasSavedJew == true) {
     // 月面帝国
     // modal-resultの設定
-    document.getElementById("result-title").textContent = "月面帝国を築く";
+    document.getElementById("result-title").textContent = "月面の陽は沈む";
     addItemsToList(["研究が終わっていない", "月面開発が100以上", "ユダヤ人を見逃した"]);
     // モーダル移行
     document.getElementById("ENDING_TYPE").textContent = "TYPE_3";
@@ -543,7 +543,7 @@ function determineEnding() {
   } else if (Relations >= 100 && hasSavedJPN == true) {
     // 日本と統合（日本優位）
     // modal-resultの設定
-    document.getElementById("result-title").textContent = "日本基地の傘下に入る";
+    document.getElementById("result-title").textContent = "日本基地に亡命";
     addItemsToList(["研究が終わっていない"],["関係値が100以上"],["日本基地を救った"]);
     // モーダル移行
     document.getElementById("ENDING_TYPE").textContent = "TYPE_4";
