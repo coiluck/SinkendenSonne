@@ -70,7 +70,7 @@ function updateEffects2(count) {
     const effectDescriptions = scenario.effects.map(effect => {
       let statName;
       switch (effect.stat) {
-        case 'resources': statName = '資源'; break;
+        case 'resources': statName = '物資'; break;
         case 'relations': statName = '他国との関係'; break;
         case 'progress': statName = '研究進度'; break;
         case 'moon-development': statName = '月面開発'; break;
