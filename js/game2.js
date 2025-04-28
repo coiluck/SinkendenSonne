@@ -542,7 +542,7 @@ function determineEnding() {
     // 日本と統合（日本優位）
     // modal-resultの設定
     document.getElementById("result-title").textContent = "日本基地に亡命";
-    addItemsToList(["研究が終わっていない"],["関係値が100以上"],["日本基地を救った"]);
+    addItemsToList(["研究が終わっていない", "関係値が100以上", "日本基地を救った"]);
     // モーダル移行
     document.getElementById("ENDING_TYPE").textContent = "TYPE_4";
     document.getElementById("modal-game2").classList.add("fadeout");
