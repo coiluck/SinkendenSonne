@@ -55,6 +55,20 @@ function UpdateResourcesCost2(count) {
   const hokyuuCost = 500 * window.gameDataByChar.hokyuu;
   costElement.textContent = "-" + shouhiCost + " +" + hokyuuCost;
 };
+
+// 中間ストーリー中にgame2の選択肢効果を更新
+document.getElementById("punish-Jew").addEventListener("click", function() {
+  // 人員はgame1のを引き継ぐのが中間ストーリーの最後なのでこっちのほうが実行が早い。game1のを取得
+  const count = parseInt(document.getElementById("personnel-count").textContent, 10);
+  UpdateResourcesCost2(count);
+  updateEffects2(count)
+});
+document.getElementById("save-Jew").addEventListener("click", function() {
+  const count = parseInt(document.getElementById("personnel-count").textContent, 10);
+  UpdateResourcesCost2(count);
+  updateEffects2(count)
+});
+
   // 獲得スコアを更新
 function updateEffects2(count) {
   const scoreRatio = [1, 1.13, 1.23, 1.31, 1.38, 1.44, 1.5];
