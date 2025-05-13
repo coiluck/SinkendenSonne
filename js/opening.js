@@ -172,12 +172,22 @@ const openingClick = function () {
         currentTextIndex = 0; // テキストインデックスをリセット
         
         if (currentArray && currentArray.length > 0) {
-          document.querySelector(".opening-background img").src = "./image/room.avif"; // 背景変更
-          textArea.textContent = currentArray[currentTextIndex].text; // 最初のテキスト表示
-          currentTextIndex++;
-          modalOpening.classList.remove("fadeout");
-          modalOpening.classList.add("fadein");
-          isProcessing = false; // 処理完了
+          // 背景画像を変更
+          const backgroundImg = document.querySelector(".opening-background img");
+          const newImageSrc = "./image/room.avif";
+          // 新しい画像を事前にロード
+          const tempImage = new Image();
+          // 画像のロードが完了したら背景を変更してフェードイン
+          tempImage.onload = function() {
+            backgroundImg.src = newImageSrc;
+            textArea.textContent = currentArray[currentTextIndex].text; // 最初のテキスト表示
+            currentTextIndex++;
+            modalOpening.classList.remove("fadeout");
+            modalOpening.classList.add("fadein");
+            isProcessing = false; // 処理完了
+          };
+          // ロード開始 (onloadトリガー)
+          tempImage.src = newImageSrc;
         } else {
           console.error("オープニング2の配列が無効です");
           rebindClickListener();
@@ -195,17 +205,26 @@ const openingClick = function () {
         isProcessing = false; // 選択画面表示完了
       } else if (nextArrayIndex === 3) { 
         console.log("オープニング3へ移行");
-        // 背景を更新
-        document.querySelector(".opening-background img").src = "./image/rocket.avif";
-        // 次の配列に移る
-        currentArrayIndex = nextArrayIndex;
-        currentArray = TextArrays[currentArrayIndex]; // 新しい配列を設定
-        currentTextIndex = 0; // テキストインデックスをリセット
-        textArea.textContent = currentArray[currentTextIndex].text; // 最初のテキスト表示
-        currentTextIndex++;
-        modalOpening.classList.remove("fadeout");
-        modalOpening.classList.add("fadein");
-        isProcessing = false; // 処理完了
+        // 背景画像を変更
+        const backgroundImg = document.querySelector(".opening-background img");
+        const newImageSrc = "./image/rocket.avif";
+        // 新しい画像を事前にロード
+        const tempImage = new Image();
+        // 画像のロードが完了したら背景を変更してフェードイン
+        tempImage.onload = function() {
+          backgroundImg.src = newImageSrc;
+          // 次の配列に移る
+          currentArrayIndex = nextArrayIndex;
+          currentArray = TextArrays[currentArrayIndex]; // 新しい配列を設定
+          currentTextIndex = 0; // テキストインデックスをリセット
+          textArea.textContent = currentArray[currentTextIndex].text; // 最初のテキスト表示
+          currentTextIndex++;
+          modalOpening.classList.remove("fadeout");
+          modalOpening.classList.add("fadein");
+          isProcessing = false; // 処理完了
+        };
+        // ロード開始 (onloadトリガー)
+        tempImage.src = newImageSrc;
       } else if (nextArrayIndex === 4) { 
         // OpeningTextArray3 -> ゲーム画面へ
         console.log("ゲーム画面へ移行");

@@ -94,7 +94,7 @@ function updateEffects(count) {
     const effectDescriptions = scenario.effects.map(effect => {
       let statName;
       switch (effect.stat) {
-        case 'resources': statName = '資源'; break;
+        case 'resources': statName = '物資'; break;
         case 'relations': statName = '他国との関係'; break;
         case 'progress': statName = '研究進度'; break;
         case 'moon-development': statName = '月面開発'; break;
@@ -325,7 +325,7 @@ function updateChoices() {
     const effectDescriptions = scenario.effects.map(effect => {
       let statName;
       switch (effect.stat) {
-        case 'resources': statName = '資源'; break;
+        case 'resources': statName = '物資'; break;
         case 'relations': statName = '他国との関係'; break;
         case 'progress': statName = '研究進度'; break;
         case 'moon-development': statName = '月面開発'; break;
@@ -377,7 +377,6 @@ function resetToChoices() {
     let resources = parseInt(resourcesElement.textContent, 10);
     resources += 500 * window.gameDataByChar.hokyuu;
     resourcesElement.textContent = resources;
-    console.log("補給適用倍率: 500 * " + window.gameDataByChar.hokyuu);
   } else {
     // ゲーム終了処理（後で関数書いて入れておく）
     document.querySelector(".game-screen").classList.remove("fast-fadein");
@@ -399,18 +398,6 @@ function handleChoiceClick(event) {
   event.stopPropagation();
   if (isSeeingStory) return;
   isSeeingStory = true;
-  // 物資を減少
-  const personnelCount = parseInt(document.getElementById("personnel-count").textContent, 10);
-  const resourcesElement = document.getElementById("resources");
-  let resources = parseInt(resourcesElement.textContent, 10);
-  const resourceCost = 200 + personnelCount * 5 * window.gameDataByChar.shouhi;
-  resources -= resourceCost;
-  if (resources < 0) {
-    console.log("Failed to Resource-Control");
-    determineEndingToBadEnd1();
-  }
-  resourcesElement.textContent = resources;
-  console.log("消費適用倍率: 200 + " + personnelCount + " * 5 * " + window.gameDataByChar.shouhi);
   // クリックされた選択肢カードを特定し、対応するシナリオのインデックスを取得
   const choiceCards = document.querySelectorAll(".choice-card");
   choiceCards.forEach((card, index) => {
@@ -425,7 +412,18 @@ function handleChoiceClick(event) {
   });
   // ステータスの更新を追加
   const selectedScenario = gameScenarios[currentRound][currentScenarioIndex];
+  const personnelCount = parseInt(document.getElementById("personnel-count").textContent, 10);
   updateStatus(selectedScenario.effects, personnelCount);
+  // 物資を減少
+  const resourcesElement = document.getElementById("resources");
+  let resources = parseInt(resourcesElement.textContent, 10);
+  const resourceCost = 200 + personnelCount * 5 * window.gameDataByChar.shouhi;
+  resources -= resourceCost;
+  if (resources < 0) {
+    console.log("Failed to Resource-Control");
+    determineEndingToBadEnd1();
+  }
+  resourcesElement.textContent = resources;
   // 選択肢を消してテキストを表示
   document.querySelector(".game-screen").classList.add("fast-fadeout");  
   setTimeout(function(){ 
